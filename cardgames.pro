@@ -14,9 +14,19 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    bjdisplay.cpp
+    bjdisplay.cpp \
+    bjgame.cpp \
+    blackjackhandevaluator.cpp \
+    card.cpp \
+    deck.cpp \
+    hand.cpp
 
 HEADERS  += mainwindow.h \
-    bjdisplay.h
+    bjdisplay.h \
+    bjgame.h \
+    blackjackhandevaluator.h \
+    card.h \
+    deck.h \
+    hand.h
 
 FORMS    += mainwindow.ui

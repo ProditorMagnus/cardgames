@@ -1,10 +1,12 @@
 #include "bjdisplay.h"
 
-BJdisplay::BJdisplay(QWidget *parent)
-    : QWidget(parent)
+BJdisplay::BJdisplay(MainWindow *parent)
+    : QWidget(parent), m_mainWindow(parent)
 {
-    // Nothing here yet
+
     setMouseTracking(true);
+    this->deck = new Deck(52);
+    deck->shuffle();
 }
 
 void BJdisplay::paintEvent(QPaintEvent *event) {
@@ -12,7 +14,7 @@ void BJdisplay::paintEvent(QPaintEvent *event) {
 }
 
 void BJdisplay::mousePressEvent(QMouseEvent *event){
-
+    m_mainWindow->m_statusLabel->setText(QString::fromStdString("message"));
 }
 void BJdisplay::mouseReleaseEvent(QMouseEvent *event){
 
