@@ -18,6 +18,7 @@ bg::BJgame(BJdisplay *display, Deck *deck)
     if(evalp1()==21 && evalp2()!=21){
         /// player 1 wins
         result = 1;
+        display->win1();
         cout<<"Player 1 wins, game over!"<<endl;
     }
 }
@@ -31,16 +32,18 @@ void bg::drawp1(){
 	p1.addCard(deck->draw());
 	if(evalp1()>21){
 		/// player 1 loses
-		cout<<"Player 1 lost"<<endl;
-        display->lose1();
+        finish();
+        //cout<<"Player 1 lost"<<endl;
+        //display->lose1();
 	}
 }
 void bg::drawp2(){
 	p2.addCard(deck->draw());
 	if(evalp2()>21){
 		/// player 1 wins
-		cout<<"Player 1 won"<<endl;
-        display->win1();
+        finish();
+        //cout<<"Player 1 won"<<endl;
+        //display->win1();
 	}
 }
 
@@ -67,6 +70,7 @@ void bg::print(){
 
 void bg::dealerplay(){
 	if(result!=0){
+        finish();
 		return;
 	}
 	cout<<"Starting dealer turn "<<evalp2()<<endl;
@@ -78,9 +82,12 @@ void bg::dealerplay(){
 	}
 	/// kas dealer teab, kui palju mängija sai?
 	cout<<"Ended dealer actions "<<evalp2()<<endl;
+    finish();
 }
 
 void bg::finish(){
+    cout<<"p1 "<<evalp1()<<endl;
+    cout<<"p2 "<<evalp2()<<endl;
 	if(evalp1()>21){
 		/// player 1 loses
 		result = -1;

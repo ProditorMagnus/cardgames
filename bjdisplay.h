@@ -27,6 +27,7 @@ class BJdisplay : public QWidget
 {
     Q_OBJECT
 public:
+    bool game_over = false;
     boost::optional<BJgame> bg;
     Deck* deck;
     MainWindow *m_mainWindow;
@@ -40,8 +41,10 @@ public:
     void win1();
 private slots:
     void handleButton();
+    void handleButtonFinish();
 protected:
     QPushButton *m_button;
+    QPushButton *m_finish_button;
 };
 
 #endif // BJDISPLAY_H
