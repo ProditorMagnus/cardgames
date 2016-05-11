@@ -10,16 +10,29 @@
 #include <QMenuBar>
 #include <QStatusBar>
 #include <QWhatsThis>
+#include <QLabel>
+#include "card.h"
+#include "deck.h"
+#include "hand.h"
+#include "blackjackhandevaluator.h"
+#include "bjgame.h"
+#include "mainwindow.h"
+
+class MainWindow;
 
 class BJdisplay : public QWidget
 {
     Q_OBJECT
 public:
-    BJdisplay(QWidget *parent = 0);
+    Deck* deck;
+    MainWindow *m_mainWindow;
+    BJdisplay(MainWindow *parent);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
+protected:
+
 };
 
 #endif // BJDISPLAY_H
