@@ -30,3 +30,10 @@ HEADERS  += mainwindow.h \
     hand.h
 
 FORMS    += mainwindow.ui
+
+INCLUDEPATH += C:/Users/Ravana/Desktop/UT_OwnCloud/ained2/cpp/pr7/boost_1_53_0
+LIBS += C:/Users/Ravana/Desktop/UT_OwnCloud/ained2/cpp/pr7/boost-1.53-mingw-4.7/libboost_filesystem-mgw47-mt-1_53.a
+LIBS += C:/Users/Ravana/Desktop/UT_OwnCloud/ained2/cpp/pr7/boost-1.53-mingw-4.7/libboost_program_options-mgw47-mt-1_53.a
+LIBS += C:/Users/Ravana/Desktop/UT_OwnCloud/ained2/cpp/pr7/boost-1.53-mingw-4.7/libboost_regex-mgw47-mt-1_53.a
+LIBS += C:/Users/Ravana/Desktop/UT_OwnCloud/ained2/cpp/pr7/boost-1.53-mingw-4.7/libboost_system-mgw47-mt-1_53.a
+LIBS += C:/Users/Ravana/Desktop/UT_OwnCloud/ained2/cpp/pr7/boost-1.53-mingw-4.7/libboost_thread-mgw47-mt-1_53.a

@@ -2,14 +2,18 @@
 #define BJGAME_H
 #include "blackjackhandevaluator.h"
 
+
 /**
 	see peab siis käituma kui vahelüli graafilise poole ja loogika vahel
 	dealer is referred to as player2
 */
+class BJdisplay;
 class BJgame
 {
 	public:
-		BJgame(Deck *deck);
+        BJdisplay *display = nullptr;
+
+        BJgame(BJdisplay *display, Deck *deck);
 		
 		signed int result = 0; /// 1 kui võidab mängija 1 ja -1 kui kaotab mängija 1
 		

@@ -1,24 +1,25 @@
 #include "bjgame.h"
 #include "hand.h"
-
+#include "bjdisplay.h"
 typedef BJgame bg;
 typedef BlackJackHandEvaluator BE;
 
-bg::BJgame(Deck *deck)
+bg::BJgame(BJdisplay *display, Deck *deck)
 {
-	//ctor
-	this->deck = deck;
-	this->p1 = Hand();
-	this->p2 = Hand();
-	p1.addCard(this->deck->draw());
-	p1.addCard(this->deck->draw());
-	p2.addCard(this->deck->draw());
-	p2.addCard(this->deck->draw());
-	if(evalp1()==21 && evalp2()!=21){
-		/// player 1 wins
-		result = 1;
-		cout<<"Player 1 wins, game over!"<<endl;
-	}
+    //ctor
+    this->display = display;
+    this->deck = deck;
+    this->p1 = Hand();
+    this->p2 = Hand();
+    p1.addCard(this->deck->draw());
+    p1.addCard(this->deck->draw());
+    p2.addCard(this->deck->draw());
+    p2.addCard(this->deck->draw());
+    if(evalp1()==21 && evalp2()!=21){
+        /// player 1 wins
+        result = 1;
+        cout<<"Player 1 wins, game over!"<<endl;
+    }
 }
 
 bg::~BJgame()
@@ -31,6 +32,7 @@ void bg::drawp1(){
 	if(evalp1()>21){
 		/// player 1 loses
 		cout<<"Player 1 lost"<<endl;
+        display->lose1();
 	}
 }
 void bg::drawp2(){
@@ -38,6 +40,7 @@ void bg::drawp2(){
 	if(evalp2()>21){
 		/// player 1 wins
 		cout<<"Player 1 won"<<endl;
+        display->win1();
 	}
 }
 
@@ -81,23 +84,28 @@ void bg::finish(){
 	if(evalp1()>21){
 		/// player 1 loses
 		result = -1;
+        display->lose1();
 		cout<<"Finished with player 1 loss"<<endl;
 	} else if(evalp2()>21){
 		/// player 1 wins
 		result = 1;
+        display->win1();
 		cout<<"Finished with player 1 win"<<endl;
 		return;
 	} else if(evalp1()>evalp2()){
 		/// player 1 wins
 		result = 1;
+        display->win1();
 		cout<<"Finished with player 1 win"<<endl;
 	} else if(evalp2()>evalp1()){
 		/// player 1 loses
 		result = -1;
+        display->lose1();
 		cout<<"Finished with player 1 loss"<<endl;
 	} else {
 		/// draw, but letting player 1 win
 		result = 1;
+        display->win1();
 		cout<<"Finished game with draw, so granted win to player 1"<<endl;
 	}
 }

@@ -11,12 +11,15 @@
 #include <QStatusBar>
 #include <QWhatsThis>
 #include <QLabel>
+#include <QPushButton>
 #include "card.h"
 #include "deck.h"
 #include "hand.h"
 #include "blackjackhandevaluator.h"
 #include "bjgame.h"
 #include "mainwindow.h"
+#include <boost/optional.hpp>
+#include <vector>
 
 class MainWindow;
 
@@ -24,6 +27,7 @@ class BJdisplay : public QWidget
 {
     Q_OBJECT
 public:
+    boost::optional<BJgame> bg;
     Deck* deck;
     MainWindow *m_mainWindow;
     BJdisplay(MainWindow *parent);
@@ -31,8 +35,13 @@ public:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
-protected:
 
+    void lose1();
+    void win1();
+private slots:
+    void handleButton();
+protected:
+    QPushButton *m_button;
 };
 
 #endif // BJDISPLAY_H
