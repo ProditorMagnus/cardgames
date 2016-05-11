@@ -32,7 +32,11 @@ void BJdisplay::paintEvent(QPaintEvent *event) {
     int value;
     for(int i=0;i<cards.size();i++){
         QImage img(QString::fromStdString(":images/"+cards[i].imageName()),"PNG");
-        painter.drawImage(QRect(100+110*i, 50, 100, 145), img);
+        if(cards.size()>6){
+            painter.drawImage(QRect(100+70*i, 50, 100, 145), img);
+        } else {
+            painter.drawImage(QRect(100+110*i, 50, 100, 145), img);
+        }
     }
     value = bg.get().evalp1();
     if(game_over){
@@ -48,7 +52,11 @@ void BJdisplay::paintEvent(QPaintEvent *event) {
         vector<Card> cards2 = bg.get().p2.getCards();
         for(int i=0;i<cards2.size();i++){
             QImage img(QString::fromStdString(":images/"+cards2[i].imageName()),"PNG");
-            painter.drawImage(QRect(100+110*i, 250, 100, 145), img);
+            if(cards2.size()>6){
+                painter.drawImage(QRect(100+70*i, 250, 100, 145), img);
+            } else {
+                painter.drawImage(QRect(100+110*i, 250, 100, 145), img);
+            }
         }
         value = bg.get().evalp2();
         if(game_over){
@@ -78,6 +86,9 @@ void BJdisplay::win1(){
 void BJdisplay::mousePressEvent(QMouseEvent *event){
     //m_mainWindow->m_statusLabel->setText(QString::fromStdString("message"));
     //update();
+    if(game_over){
+        m_mainWindow->close();
+    }
 }
 void BJdisplay::mouseReleaseEvent(QMouseEvent *event){
 
