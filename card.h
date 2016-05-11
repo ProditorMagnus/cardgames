@@ -52,6 +52,8 @@ public:
 	string mastToString(const Mast &mast) const;
 	string tugevusToString(const Tugevus &tugevus) const;
 	
+    string imageName() const;
+
 	std::string toString() const {
 		std::string s = "Card(";
 		std::ostringstream os;

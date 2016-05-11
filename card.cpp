@@ -13,7 +13,7 @@ string Card::mastToString(const Mast &mast) const {
 	case Mast::poti:
 		return "spades";
 	case Mast::ruutu:
-		return "tiles";
+        return "diamonds";
 	case Mast::artu:
 		return "hearts";
 	}
@@ -87,4 +87,54 @@ signed int Card::bjValue(){
 		return 10;
 	}
 	assert(false);
+}
+
+string Card::imageName() const{
+    string s = "PNG-cards-1.3/";
+    switch (tugevus){
+    case Tugevus::ace:
+        s+="ace";
+        break;
+    case Tugevus::king:
+        s+="king";
+        break;
+    case Tugevus::queen:
+        s+="queen";
+        break;
+    case Tugevus::soldier:
+        s+="jack";
+        break;
+    case Tugevus::two:
+        s+="2";
+        break;
+    case Tugevus::three:
+        s+="3";
+        break;
+    case Tugevus::four:
+        s+= "4";
+        break;
+    case Tugevus::five:
+        s+= "5";
+        break;
+    case Tugevus::six:
+        s+= "6";
+        break;
+    case Tugevus::seven:
+        s+= "7";
+        break;
+    case Tugevus::eight:
+        s+= "8";
+        break;
+    case Tugevus::nine:
+        s+= "9";
+        break;
+    case Tugevus::ten:
+        s+= "10";
+        break;
+    }
+    s+="_of_";
+    s+=mastToString(mast);
+    s+=".png";
+    //cout<<s<<endl;
+    return s;
 }

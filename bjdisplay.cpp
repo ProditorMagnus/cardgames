@@ -17,6 +17,7 @@ BJdisplay::BJdisplay(MainWindow *parent)
 
     bg = BJgame(this,deck);
     m_mainWindow->m_statusLabel->setText(QString::fromStdString(to_string(bg.get().evalp1())));
+    update();
 }
 
 void BJdisplay::paintEvent(QPaintEvent *event) {
@@ -25,7 +26,10 @@ void BJdisplay::paintEvent(QPaintEvent *event) {
     painter.setBrush(Qt::black);
     vector<Card> cards = bg.get().p1.getCards();
     for(int i=0;i<cards.size();i++){
-        painter.drawEllipse(100+100*i,200,20,20);
+        QImage img(QString::fromStdString(":images/"+cards[i].imageName()),"PNG");
+        painter.drawImage(QRect(100+100*i, 50, 100, 100), img);
+        //painter.drawEllipse(100+100*i,200,20,20);
+
     }
 
 }

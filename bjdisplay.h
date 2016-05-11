@@ -12,6 +12,7 @@
 #include <QWhatsThis>
 #include <QLabel>
 #include <QPushButton>
+#include <QImage>
 #include "card.h"
 #include "deck.h"
 #include "hand.h"

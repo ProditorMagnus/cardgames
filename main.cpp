@@ -9,3 +9,5 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+
+// https://code.google.com/archive/p/vector-playing-cards/
