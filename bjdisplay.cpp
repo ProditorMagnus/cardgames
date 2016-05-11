@@ -16,18 +16,19 @@ BJdisplay::BJdisplay(MainWindow *parent)
     deck->shuffle();
 
     bg = BJgame(this,deck);
+    if(game_over) return;
     m_mainWindow->m_statusLabel->setText(QString::fromStdString(to_string(bg.get().evalp1())));
     update();
 }
 
 void BJdisplay::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
-    painter.fillRect(event->rect(), Qt::white);
+    painter.fillRect(event->rect(), Qt::gray);
     painter.setBrush(Qt::black);
     vector<Card> cards = bg.get().p1.getCards();
     for(int i=0;i<cards.size();i++){
         QImage img(QString::fromStdString(":images/"+cards[i].imageName()),"PNG");
-        painter.drawImage(QRect(100+100*i, 50, 100, 100), img);
+        painter.drawImage(QRect(100+110*i, 50, 100, 145), img);
         //painter.drawEllipse(100+100*i,200,20,20);
 
     }
@@ -59,6 +60,7 @@ void BJdisplay::mouseMoveEvent(QMouseEvent *event){
 void BJdisplay::handleButton(){
     if(game_over) return;
     bg.get().drawp1();
+    if(game_over) return;
     m_mainWindow->m_statusLabel->setText(QString::fromStdString(to_string(bg.get().evalp1())));
     update();
 }
