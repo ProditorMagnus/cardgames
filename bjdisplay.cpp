@@ -23,14 +23,43 @@ BJdisplay::BJdisplay(MainWindow *parent)
 
 void BJdisplay::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
+    QFont font = painter.font();
+    font.setPointSize(18);
+    painter.setFont(font);
     painter.fillRect(event->rect(), Qt::gray);
     painter.setBrush(Qt::black);
     vector<Card> cards = bg.get().p1.getCards();
+    int value;
     for(int i=0;i<cards.size();i++){
         QImage img(QString::fromStdString(":images/"+cards[i].imageName()),"PNG");
         painter.drawImage(QRect(100+110*i, 50, 100, 145), img);
-        //painter.drawEllipse(100+100*i,200,20,20);
-
+    }
+    value = bg.get().evalp1();
+    if(game_over){
+        if(value>21){
+            painter.setPen(Qt::red);
+        } else if(bg.get().evalp2()>21 || bg.get().evalp1()>=bg.get().evalp2()){
+            painter.setPen(Qt::green);
+        }
+    }
+    painter.drawText(50,120,QString::fromStdString(to_string(value)));
+    painter.setPen(Qt::black);
+    if(game_over){
+        vector<Card> cards2 = bg.get().p2.getCards();
+        for(int i=0;i<cards2.size();i++){
+            QImage img(QString::fromStdString(":images/"+cards2[i].imageName()),"PNG");
+            painter.drawImage(QRect(100+110*i, 250, 100, 145), img);
+        }
+        value = bg.get().evalp2();
+        if(game_over){
+            if(value>21){
+                painter.setPen(Qt::red);
+            } else if(bg.get().evalp1()>21 || bg.get().evalp1()<bg.get().evalp2()){
+                painter.setPen(Qt::green);
+            }
+        }
+        painter.drawText(50,340,QString::fromStdString(to_string(value)));
+        painter.setPen(Qt::black);
     }
 
 }
