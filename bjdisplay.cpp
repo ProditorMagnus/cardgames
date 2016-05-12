@@ -75,11 +75,15 @@ void BJdisplay::paintEvent(QPaintEvent *event) {
 void BJdisplay::lose1(){
     m_mainWindow->m_statusLabel->setText(QString::fromStdString("YOU LOST, game over | click anywhere to exit"));
     game_over=true;
+    m_button->setDisabled(true);
+    m_finish_button->setDisabled(true);
     update();
 }
 void BJdisplay::win1(){
     m_mainWindow->m_statusLabel->setText(QString::fromStdString("YOU WON, game over | click anywhere to exit"));
     game_over=true;
+    m_button->setDisabled(true);
+    m_finish_button->setDisabled(true);
     update();
 }
 
