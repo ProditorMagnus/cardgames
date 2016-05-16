@@ -2,10 +2,10 @@
 
 typedef BlackJackHandEvaluator be;
 
-be::BlackJackHandEvaluator(vector<Card> cards)
+be::BlackJackHandEvaluator(Hand &hand)
 {
 	//ctor
-	this->cards = cards;
+    this->hand = hand;
 }
 
 be::~BlackJackHandEvaluator()
@@ -17,7 +17,7 @@ signed int be::eval(){
 	int min_sum = 0;
 	int max_sum = 0;
 	// see toimib kui on 1 äss... aga kui on 2/3/4?
-	for(auto &i : cards){
+    for(auto &i : hand.getCards()){
 		if(i.bjValue()==11){
 			if(min_sum==max_sum){
 				// esimene äss
@@ -43,7 +43,7 @@ signed int be::eval(){
 signed int be::min_sum(){
 	int min_sum = 0;
 	int max_sum = 0;
-	for(auto &i : cards){
+    for(auto &i : hand.getCards()){
 		if(i.bjValue()==11){
 			min_sum+=1;
 			max_sum+=11;
@@ -60,7 +60,7 @@ signed int be::min_sum(){
 signed int be::max_sum(){
 	int min_sum = 0;
 	int max_sum = 0;
-	for(auto &i : cards){
+    for(auto &i : hand.getCards()){
 		if(i.bjValue()==11){
 			if(min_sum==max_sum){
 				min_sum+=1;

@@ -48,23 +48,23 @@ void bg::drawp2(){
 }
 
 unsigned int bg::evalp1(){
-	BE be1(p1.getCards());
+    BE be1(p1);
 	return be1.eval();
 }
 
 unsigned int bg::evalp2(){
-	BE be2(p2.getCards());
+    BE be2(p2);
 	return be2.eval();
 }
 
 void bg::print(){
 	cout<<"p1:"<<endl;
 	p1.printCards();
-	BE be1(p1.getCards());
+    BE be1(p1);
 	cout<<be1.eval()<<endl;
 	cout<<"p2:"<<endl;
 	p2.printCards();
-	BE be2(p2.getCards());
+    BE be2(p2);
 	cout<<be2.eval()<<endl;
 }
 
@@ -74,7 +74,13 @@ void bg::dealerplay(){
 		return;
 	}
     //cout<<"Starting dealer turn "<<evalp2()<<endl;
-	BE be(p2.getCards());
+    BE be(p2);
+    BE be1(p1);
+    if(be.eval()<=be1.eval()){
+        /// nagu ma küsisin, siis dealer näeb mängija kaarte
+        p2.addCard(deck->draw());
+        return dealerplay();
+    }
 	if(be.max_sum()<17){
 		/// kui suurim võimalik summa on alla 17 siis peab juurde võtma
 		p2.addCard(deck->draw());

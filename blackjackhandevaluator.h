@@ -5,7 +5,7 @@
 class BlackJackHandEvaluator
 {
 	public:
-		BlackJackHandEvaluator(vector<Card> cards);
+        BlackJackHandEvaluator(Hand &hand);
 		signed int eval();
 		signed int min_sum();
 		signed int max_sum();
@@ -13,7 +13,7 @@ class BlackJackHandEvaluator
 		virtual ~BlackJackHandEvaluator();
 	protected:
 	private:
-		vector<Card> cards;
+        Hand hand;
 };
 
 #endif // BLACKJACKHANDEVALUATOR_H
