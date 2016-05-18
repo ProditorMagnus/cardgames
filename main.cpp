@@ -28,7 +28,8 @@ int main(int argc, char *argv[])
 // graafilise osa asi ainult
 // käsi on alati seesmiselt sorteeritud(väärtustamise algoritm tugineb sellele). kas võib ka näidata seda sellisena, või näitamise peab tegema
 // juhuslikus järjekorras? kui kaarte vahetada,
-// kas siis peavad täituma augud uute kaartidega, peavad uued kaardid minema ühte serva. või võin näidata nii nagu tahan.
+// kas siis peavad täituma augud uute kaartidega, peavad uued kaardid minema ühte serva. või võin näidata nii nagu tahan. -- eeldan et
+// nagu tahan
 
 
 
